@@ -27,6 +27,7 @@ class TodoItems extends React.Component {
                         <tr>
                             <th scope="col">Status</th>
                             <th scope="col">Item</th>
+                            <th scope="col">Deadline</th>
                             <th scope="col" className="text-right">
                                 Actions
                             </th>

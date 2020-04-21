@@ -94,6 +94,17 @@ class TodoItem extends React.Component {
                         id={`todoItem__title-${todoItem.id}`}
                     />
                 </td>
+                <td>
+                    <input
+                        type="text"
+                        defaultValue={todoItem.deadline}
+                        disabled={this.state.complete}
+                        onChange={this.handleChange}
+                        ref={this.inputRef}
+                        className="form-control"
+                        id={`todoItem__deadline-${todoItem.id}`}
+                    />
+                </td>
                 <td className="text-right">
                     <div className="form-check form-check-inline">
                         <input
