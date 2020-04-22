@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import axios from "axios";
 import _ from "lodash";
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
 import setAxiosHeaders from "./AxiosHeaders";
 
 class TodoItem extends React.Component {
@@ -10,6 +12,7 @@ class TodoItem extends React.Component {
         super(props);
         this.state = {
             complete: this.props.todoItem.complete,
+            startDate: new Date()
         };
         this.handleChange = this.handleChange.bind(this);
         this.updateTodoItem = this.updateTodoItem.bind(this);
@@ -18,9 +21,10 @@ class TodoItem extends React.Component {
         this.completedRef = React.createRef();
         this.path = `/api/v1/todo_items/${this.props.todoItem.id}`;
     }
-    handleChange() {
+    handleChange(date) {
         this.setState({
-            complete: this.completedRef.current.checked
+            complete: this.completedRef.current.checked,
+            startDate: date
         });
         this.updateTodoItem();
     }
@@ -86,23 +90,20 @@ class TodoItem extends React.Component {
                 <td>
                     <input
                         type="text"
+                        style={{ width:"600px" }}
                         defaultValue={todoItem.title}
                         disabled={this.state.complete}
                         onChange={this.handleChange}
-                        ref={this.inputRef}
                         className="form-control"
                         id={`todoItem__title-${todoItem.id}`}
                     />
                 </td>
                 <td>
-                    <input
-                        type="text"
-                        defaultValue={todoItem.deadline}
+                    <DatePicker
+                        selected={this.state.startDate}
                         disabled={this.state.complete}
+                        dateFormat="MM-dd-yyyy"
                         onChange={this.handleChange}
-                        ref={this.inputRef}
-                        className="form-control"
-                        id={`todoItem__deadline-${todoItem.id}`}
                     />
                 </td>
                 <td className="text-right">
