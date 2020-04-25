@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_164007) do
     t.string "title"
     t.bigint "user_id", null: false
     t.boolean "complete", default: false
-    t.date "deadline", default: "2020-04-22"
+    t.date "deadline", default: "2020-04-25"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_todo_items_on_user_id"

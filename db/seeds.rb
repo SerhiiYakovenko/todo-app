@@ -17,6 +17,7 @@ end
 User.all.each do |user|
   10.times do |i|
     user.todo_items.create(title: "To Do Item #{i + 1} for #{user.email}",
-                           complete: (i % 3).zero?)
+                           complete: (i % 3).zero?,
+                           deadline: DateTime.now)
   end
 end

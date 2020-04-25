@@ -44,12 +44,12 @@ class TodoForm extends React.Component {
                             required
                             className="form-control"
                             id="title"
-                            placeholder="Write your todo item here..."
+                            placeholder="Start typing here to create a task..."
                         />
                     </div>
                     <div className="form-group col-md-4">
                         <button className="btn btn-outline-success btn-block">
-                            Add To Do Item
+                            Add Task
                         </button>
                     </div>
                 </div>
