@@ -8,8 +8,8 @@ Functional requirements
 - I want to be able to create/update/delete projects   - **Not Done**.
 - I want to be able to add tasks to my project - **Done**.
 - I want to be able to update/delete tasks - **Done**.
-- I want to be able to prioritize tasks into a project - **Partially Done**.
-- I want to be able to choose deadline for my task - **Partially Done**.
+- I want to be able to prioritize tasks into a project - **Done**.
+- I want to be able to choose deadline for my task - **Done**.
 - I want to be able to mark a task as 'done' - **Done**.
 
 Technical requirements

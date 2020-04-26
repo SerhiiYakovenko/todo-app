@@ -13,10 +13,12 @@ class TodoItem extends React.Component {
         super(props)
         this.state = {
             complete: this.props.todoItem.complete,
-            startDate: new Date()
+            deadline: Date.parse(this.props.todoItem.deadline)
         };
         this.handleChange = this.handleChange.bind(this);
         this.updateTodoItem = this.updateTodoItem.bind(this);
+        this.handleChangeDate = this.handleChangeDate.bind(this);
+        this.updateDate = this.updateDate.bind(this);
         this.handleDestroy = this.handleDestroy.bind(this);
         this.inputRef = React.createRef();
         this.completedRef = React.createRef();
@@ -25,8 +27,6 @@ class TodoItem extends React.Component {
     handleChange() {
         this.setState({
             complete: this.completedRef.current.checked,
-            // Sorry, I was trying, but it isn't working ;(
-            //startDate: date
         });
         this.updateTodoItem();
     }
@@ -34,10 +34,32 @@ class TodoItem extends React.Component {
         setAxiosHeaders();
         axios
             .put(this.path, {
+
                 todo_item: {
                     title: this.inputRef.current.value,
                     complete: this.completedRef.current.checked,
-                    deadline: this.state.startDate
+                }
+            })
+            .then(() => {
+                this.props.clearErrors();
+            })
+            .catch(error => {
+                this.props.handleErrors(error);
+            });
+    }, 1500);
+    handleChangeDate(date) {
+        this.setState({
+            deadline: date,
+        });
+        this.updateDate();
+    }
+    updateDate = _.debounce(() => {
+        setAxiosHeaders();
+        axios
+            .put(this.path, {
+
+                todo_item: {
+                    deadline: this.state.deadline,
                 }
             })
             .then(() => {
@@ -109,10 +131,10 @@ class TodoItem extends React.Component {
                         </td>
                         <td>
                             <DatePicker
-                                selected={this.state.startDate}
+                                selected={this.state.deadline}
                                 disabled={this.state.complete}
                                 dateFormat="MM-dd-yyyy"
-                                onChange={this.handleChange}
+                                onChange={this.handleChangeDate}
                             />
                         </td>
                         <td className="text-right">
